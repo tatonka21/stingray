@@ -40,6 +40,7 @@ import os
 import re
 import subprocess as sp
 import sys
+from security import safe_command
 
 try:
     from ConfigParser import ConfigParser, RawConfigParser
@@ -750,7 +751,7 @@ def run_cmd(cmd):
     """
 
     try:
-        p = sp.Popen(cmd, stdout=sp.PIPE, stderr=sp.PIPE)
+        p = safe_command.run(sp.Popen, cmd, stdout=sp.PIPE, stderr=sp.PIPE)
         # XXX: May block if either stdout or stderr fill their buffers;
         # however for the commands this is currently used for that is
         # unlikely (they should have very brief output)
