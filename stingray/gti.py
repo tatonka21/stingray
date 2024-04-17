@@ -13,7 +13,7 @@ def load_gtis(fits_file, gtistring=None):
     """Load GTI from HDU EVENTS of file fits_file."""
 
     gtistring = assign_value_if_none(gtistring, 'GTI')
-    logging.info("Loading GTIS from file %s" % fits_file)
+    logging.info("Loading GTIS from file %s", fits_file)
     lchdulist = fits.open(fits_file, checksum=True)
     lchdulist.verify('warn')
 

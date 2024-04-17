@@ -128,7 +128,7 @@ def load_events_and_gtis(fits_file, additional_columns=None,
     try:
         lctable = lchdulist[hduname].data
     except:  # pragma: no cover
-        logging.warning('HDU %s not found. Trying first extension' % hduname)
+        logging.warning('HDU %s not found. Trying first extension', hduname)
         lctable = lchdulist[1].data
 
     # Read event list
@@ -262,7 +262,7 @@ def ref_mjd(fits_file, hdu=1):
     if isinstance(fits_file, collections.Iterable) and\
             not is_string(fits_file):  # pragma: no cover
         fits_file = fits_file[0]
-        logging.info("opening %s" % fits_file)
+        logging.info("opening %s", fits_file)
 
     hdulist = fits.open(fits_file)
 
@@ -305,7 +305,7 @@ def common_name(str1, str2, default='common'):
     common_str = common_str.lstrip('_').lstrip('-')
     if common_str == '':
         common_str = default
-    logging.debug('common_name: %s %s -> %s' % (str1, str2, common_str))
+    logging.debug('common_name: %s %s -> %s', str1, str2, common_str)
     return common_str
 
 def split_numbers(number):

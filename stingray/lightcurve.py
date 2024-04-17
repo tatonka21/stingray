@@ -343,10 +343,10 @@ class Lightcurve(object):
         if tseg is None:
             tseg = toa[-1] - toa[0]
 
-        logging.info("make_lightcurve: tseg: " + str(tseg))
+        logging.info("make_lightcurve: tseg: %s", str(tseg))
 
         timebin = np.int(tseg/dt)
-        logging.info("make_lightcurve: timebin:  " + str(timebin))
+        logging.info("make_lightcurve: timebin:  %s", str(timebin))
 
         tend = tstart + timebin*dt
 
