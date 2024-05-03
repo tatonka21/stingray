@@ -1,4 +1,3 @@
-from __future__ import division, print_function, absolute_import
 from ..pulsar import *
 
 def _template_fun(phase, ph0, amplitude, baseline=0):

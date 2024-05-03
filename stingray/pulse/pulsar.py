@@ -1,7 +1,6 @@
 """
 Basic pulsar-related functions and statistics.
 """
-from __future__ import division, print_function, absolute_import
 import numpy as np
 import collections
 from ..utils import simon, jit
