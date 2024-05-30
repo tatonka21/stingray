@@ -5,6 +5,7 @@ import warnings
 from stingray import Lightcurve, AveragedPowerspectrum
 from stingray import Crossspectrum, AveragedCrossspectrum, coherence
 from stingray import StingrayError
+import math
 
 np.random.seed(20160528)
 
@@ -134,7 +135,7 @@ class TestCrossspectrum(object):
 
     def test_rebin(self):
         new_cs = self.cs.rebin(df=1.5)
-        assert new_cs.df == 1.5
+        assert math.isclose(new_cs.df, 1.5, rel_tol=1e-09, abs_tol=0.0)
 
     def test_norm_leahy(self):
         cs = Crossspectrum(self.lc1, self.lc2, norm='leahy')

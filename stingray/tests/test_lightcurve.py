@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 from stingray import Lightcurve
 from stingray.exceptions import StingrayError
+import math
 
 np.random.seed(20150907)
 
@@ -58,8 +59,8 @@ class TestLightcurve(object):
     def test_tstart(self):
         tstart = 0.0
         lc = Lightcurve.make_lightcurve(self.times, self.dt, tstart=0.0)
-        assert lc.tstart == tstart
-        assert lc.time[0] == tstart + 0.5*self.dt
+        assert math.isclose(lc.tstart, tstart, rel_tol=1e-09, abs_tol=0.0)
+        assert math.isclose(lc.time[0], tstart + 0.5*self.dt, rel_tol=1e-09, abs_tol=0.0)
 
     def test_tseg(self):
         tstart = 0.0
@@ -67,7 +68,7 @@ class TestLightcurve(object):
         lc = Lightcurve.make_lightcurve(self.times, self.dt,
                                         tseg=tseg, tstart=tstart)
 
-        assert lc.tseg == tseg
+        assert math.isclose(lc.tseg, tseg, rel_tol=1e-09, abs_tol=0.0)
         assert lc.time[-1] - lc.time[0] == tseg - self.dt
 
     def test_nondivisble_tseg(self):

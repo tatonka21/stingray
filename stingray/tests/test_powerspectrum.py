@@ -6,6 +6,7 @@ from astropy.tests.helper import pytest
 from stingray import Lightcurve
 from stingray import Powerspectrum, AveragedPowerspectrum
 from stingray.powerspectrum import classical_pvalue
+import math
 
 np.random.seed(20150907)
 
@@ -41,7 +42,7 @@ class TestPowerspectrum(object):
         ps = Powerspectrum(lc=self.lc)
         assert ps.freq is not None
         assert ps.power is not None
-        assert ps.df == 1.0 / self.lc.tseg
+        assert math.isclose(ps.df, 1.0 / self.lc.tseg, rel_tol=1e-09, abs_tol=0.0)
         assert ps.norm == "frac"
         assert ps.m == 1
         assert ps.n == self.lc.time.shape[0]
@@ -174,7 +175,7 @@ class TestPowerspectrum(object):
 
         assert bin_ps.freq is not None
         assert bin_ps.power is not None
-        assert bin_ps.df == rebin_factor * 1.0 / self.lc.tseg
+        assert math.isclose(bin_ps.df, rebin_factor * 1.0 / self.lc.tseg, rel_tol=1e-09, abs_tol=0.0)
         assert bin_ps.norm.lower() == "leahy"
         assert bin_ps.m == 2
         assert bin_ps.n == self.lc.time.shape[0]

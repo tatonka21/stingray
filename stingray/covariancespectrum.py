@@ -5,6 +5,7 @@ import numpy as np
 
 from stingray import Lightcurve
 import stingray.utils as utils
+import math
 
 __all__ = ['Covariancespectrum', 'AveragedCovariancespectrum']
 
@@ -178,7 +179,7 @@ class Covariancespectrum(object):
         # the upper bound is excluded.
         for energy in energy_events.keys():
             # The last energy bin
-            if energy == self.max_energy - least_count*0.5:
+            if math.isclose(energy, self.max_energy - least_count*0.5, rel_tol=1e-09, abs_tol=0.0):
                 toa = event_list_T[0][np.logical_and(
                     event_list_T[1] >= energy - least_count*0.5,
                     event_list_T[1] <= energy + least_count*0.5)]

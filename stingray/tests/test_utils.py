@@ -2,6 +2,7 @@
 from astropy.tests.helper import pytest
 import numpy as np
 import stingray.utils as utils
+import math
 
 np.random.seed(20150907)
 
@@ -19,7 +20,7 @@ class TestRebinData(object):
     def test_new_stepsize(self):
         dx_new = 2.0
         xbin, ybin, step_size = utils.rebin_data(self.x, self.y, dx_new)
-        assert step_size == dx_new/self.dx
+        assert math.isclose(step_size, dx_new/self.dx, rel_tol=1e-09, abs_tol=0.0)
 
     def test_arrays(self):
         dx_new = 2.0
