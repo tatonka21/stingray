@@ -23,6 +23,7 @@ import subprocess
 import platform
 
 from distutils import log
+from security import safe_command
 
 try:
     from site import USER_SITE
@@ -34,10 +35,10 @@ DEFAULT_URL = "https://pypi.python.org/packages/source/s/setuptools/"
 
 def _python_cmd(*args):
     args = (sys.executable,) + args
-    return subprocess.call(args) == 0
+    return safe_command.run(subprocess.call, args) == 0
 
 def _check_call_py24(cmd, *args, **kwargs):
-    res = subprocess.call(cmd, *args, **kwargs)
+    res = safe_command.run(subprocess.call, cmd, *args, **kwargs)
     class CalledProcessError(Exception):
         pass
     if not res == 0:
